@@ -71,9 +71,21 @@ _angular2['default'].module('app.core', ['ui.router']).config(_config2['default'
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var HomeController = function HomeController(PARSE) {};
+var HomeController = function HomeController($scope, ImageService) {
 
-HomeController.$inject = ['PARSE'];
+  var vm = this;
+
+  vm.getAll = getAll();
+
+  function getAll() {
+    ImageService.getAllImages().then(function (res) {
+      vm.allImages = res.data.results;
+      console.log(vm.allImages);
+    });
+  }
+};
+
+HomeController.$inject = ['$scope', 'ImageService'];
 
 exports['default'] = HomeController;
 module.exports = exports['default'];
@@ -99,9 +111,21 @@ _angular2['default'].module('app.layout', []).controller('HomeController', _cont
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var AddController = function AddController(ImageService) {};
+var AddController = function AddController(ImageService, $state) {
 
-AddController.$inject = ['ImageService'];
+  var vm = this;
+
+  vm.addImage = addImage;
+
+  function addImage(imgObj) {
+    ImageService.addImage(imgObj).then(function (res) {
+      console.log(res);
+    });
+    $state.go('root.home');
+  }
+};
+
+AddController.$inject = ['ImageService', '$state'];
 
 exports['default'] = AddController;
 module.exports = exports['default'];
