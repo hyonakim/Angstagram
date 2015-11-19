@@ -2,6 +2,8 @@ let HomeController = function($scope, ImageService) {
   
   let vm = this;
 
+  // vm.doubleClicked = doubleClicked;
+
   vm.getAll = getAll();
 
   function getAll() {

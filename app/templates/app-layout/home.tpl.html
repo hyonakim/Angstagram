@@ -1,7 +1,4 @@
 <h3>Angstagram Photos</h3>
 
-<ul ng-repeat='image in vm.allImages' class='imageList'>
-  <li><img src='{{image.image}}'></li>
-  <li>{{image.title}}</li>
-  <li>{{image.description}}</li>
-</ul>
+<hyona-image ng-repeat='image in vm.allImages' image='image'></hyona-image>
+<i class="fa fa-heart"></i>

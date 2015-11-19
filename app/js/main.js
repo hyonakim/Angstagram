@@ -75,6 +75,8 @@ var HomeController = function HomeController($scope, ImageService) {
 
   var vm = this;
 
+  // vm.doubleClicked = doubleClicked;
+
   vm.getAll = getAll();
 
   function getAll() {
@@ -136,18 +138,27 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var addItem = function addItem() {
+var hyonaImage = function hyonaImage() {
 
   return {
     restrict: 'E',
-    scope: {}
-
+    transclude: true,
+    scope: {
+      image: '='
+    },
+    template: '\n      <img src=\'{{image.image}}\' ng-dblclick=\'count = count + 1\' ng-init=\'count=0\'>\n      count: {{ count }}\n    ',
+    controller: 'HomeController as vm',
+    link: function link(scope, element, attrs) {
+      element.on('dblclick', function () {
+        count = count + 1;
+      });
+    }
   };
 };
 
-addItem.$inject = [];
+hyonaImage.$inject = [];
 
-exports['default'] = addItem;
+exports['default'] = hyonaImage;
 module.exports = exports['default'];
 
 },{}],8:[function(require,module,exports){
@@ -175,13 +186,13 @@ var _servicesImagesService2 = _interopRequireDefault(_servicesImagesService);
 
 // Directives
 
-var _directivesAddDirective = require('./directives/add.directive');
+var _directivesImageDirective = require('./directives/image.directive');
 
-var _directivesAddDirective2 = _interopRequireDefault(_directivesAddDirective);
+var _directivesImageDirective2 = _interopRequireDefault(_directivesImageDirective);
 
-_angular2['default'].module('app.photos', ['app.core']).controller('AddController', _controllersAddController2['default']).service('ImageService', _servicesImagesService2['default']).directive('addItem', _directivesAddDirective2['default']);
+_angular2['default'].module('app.photos', ['app.core']).controller('AddController', _controllersAddController2['default']).service('ImageService', _servicesImagesService2['default']).directive('hyonaImage', _directivesImageDirective2['default']);
 
-},{"../app-core/index":3,"./controllers/add.controller":6,"./directives/add.directive":7,"./services/images.service":9,"angular":13}],9:[function(require,module,exports){
+},{"../app-core/index":3,"./controllers/add.controller":6,"./directives/image.directive":7,"./services/images.service":9,"angular":13}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
