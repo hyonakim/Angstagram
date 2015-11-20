@@ -1,6 +1,13 @@
-## Welcome to My Project
+## Angstagram - An Instagram Clone
 
-> I am your Readme.md file, you should probably update me.
+> Deployment: http://angstagram.surge.sh
+
+## This application was created using the following: 
+- HTML5
+- SASS
+- Javascript
+- Angular Framework
+- PARSE Database
 
 
 ## Usage
