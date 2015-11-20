@@ -2,20 +2,49 @@
 // See Readme for a list of supported ones
 @import 'foundation';
 @import 'font-awesome';
+@import 'bourbon';
+@import 'neat';
 
 body {
-  background: #e2ebf3;
+  background: #fff;
 
-  .fa.fa-heart {
-    display: none;
+  h3 {
+    text-align: center;
   }
 
-  .hidden {
-    position: absolute;
-    display: none;
+  .container {
+    width: 100%;
+    @include outer-container;
   }
 
-  .show {
-    color: red;
+  .gallery {
+    position: relative;
+    margin-top: 5%;
+    margin-left: 5%;
+    @include span-columns(8);
+    width: 18%;
+
+    .image {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      border: 1px solid #abc;
+      border-radius: 10px;
+    }
+
+    .hidden {
+      position: absolute;
+      top: 20%;
+      margin-left: 6%;
+      color: #fff;
+      display: none;
+    }
+
+    .show {
+      position: absolute;
+      margin-top: -65%;
+      margin-left: 30%;
+      color: #fff;
+    }
   }
 }

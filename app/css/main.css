@@ -8407,14 +8407,52 @@ th.hide-for-touch {
 .fa-fonticons:before {
   content: ""; }
 
+html {
+  box-sizing: border-box; }
+
+*, *::after, *::before {
+  box-sizing: inherit; }
+
 body {
-  background: #e2ebf3; }
-  body .fa.fa-heart {
-    display: none; }
-  body .hidden {
-    position: absolute;
-    display: none; }
-  body .show {
-    color: red; }
+  background: #fff; }
+  body h3 {
+    text-align: center; }
+  body .container {
+    width: 100%;
+    max-width: 68em;
+    margin-left: auto;
+    margin-right: auto; }
+    body .container::after {
+      clear: both;
+      content: "";
+      display: table; }
+  body .gallery {
+    position: relative;
+    margin-top: 5%;
+    margin-left: 5%;
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 65.88078%;
+    width: 18%; }
+    body .gallery:last-child {
+      margin-right: 0; }
+    body .gallery .image {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      border: 1px solid #abc;
+      border-radius: 10px; }
+    body .gallery .hidden {
+      position: absolute;
+      top: 20%;
+      margin-left: 6%;
+      color: #fff;
+      display: none; }
+    body .gallery .show {
+      position: absolute;
+      margin-top: -65%;
+      margin-left: 30%;
+      color: #fff; }
 
 /*# sourceMappingURL=main.css.map */

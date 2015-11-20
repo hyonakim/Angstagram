@@ -7,19 +7,19 @@ let hyonaImage = function(ImageService, $timeout) {
       image: '='
     },
     template: `
-      <section class='gallery'>
-        <img ng-src='{{image.image}}'>
-        <div class='hidden'><i class="fa fa-smile-o fa-5x"></i></div>
-        <small><i class="fa fa-thumbs-up fa-3x"></i>:{{image.counter}}</small>
-      </section>
+      <div class='gallery'>
+        <img ng-src='{{image.image}}' class='image'>
+        <span class='hidden'><i class="fa fa-smile-o fa-5x"></i></span>
+        <p><i class="fa fa-thumbs-up">{{image.counter}}</i></p>
+      </div>
     `,
     controller: 'HomeController as vm',
     link: function (scope, element, attrs) {
       element.on('dblclick', function () {
         console.log('you liked it');
-        element.find('div').removeClass('hidden').addClass('show');
+        element.find('span').removeClass('hidden').addClass('show');
         $timeout (function () {
-          element.find('div').removeClass('show').addClass('hidden');
+          element.find('span').removeClass('show').addClass('hidden');
         }, 1000);
         ImageService.addLike(scope.image).then ( (res) => {
           console.log(res);
