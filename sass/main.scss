@@ -9,4 +9,13 @@ body {
   .fa.fa-heart {
     display: none;
   }
+
+  .hidden {
+    position: absolute;
+    display: none;
+  }
+
+  .show {
+    color: red;
+  }
 }

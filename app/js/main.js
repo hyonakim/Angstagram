@@ -138,7 +138,7 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var hyonaImage = function hyonaImage() {
+var hyonaImage = function hyonaImage(ImageService, $timeout) {
 
   return {
     restrict: 'E',
@@ -146,17 +146,24 @@ var hyonaImage = function hyonaImage() {
     scope: {
       image: '='
     },
-    template: '\n      <img src=\'{{image.image}}\' ng-dblclick=\'count = count + 1\' ng-init=\'count=0\'>\n      count: {{ count }}\n    ',
+    template: '\n      <section class=\'gallery\'>\n        <img ng-src=\'{{image.image}}\'>\n        <div class=\'hidden\'><i class="fa fa-smile-o fa-5x"></i></div>\n        <small><i class="fa fa-thumbs-up fa-3x"></i>:{{image.counter}}</small>\n      </section>\n    ',
     controller: 'HomeController as vm',
     link: function link(scope, element, attrs) {
       element.on('dblclick', function () {
-        count = count + 1;
+        console.log('you liked it');
+        element.find('div').removeClass('hidden').addClass('show');
+        $timeout(function () {
+          element.find('div').removeClass('show').addClass('hidden');
+        }, 1000);
+        ImageService.addLike(scope.image).then(function (res) {
+          console.log(res);
+        });
       });
     }
   };
 };
 
-hyonaImage.$inject = [];
+hyonaImage.$inject = ['ImageService', '$timeout'];
 
 exports['default'] = hyonaImage;
 module.exports = exports['default'];
@@ -204,11 +211,13 @@ var ImageService = function ImageService($http, PARSE) {
 
   this.getAllImages = getAllImages;
   this.addImage = addImage;
+  this.addLike = addLike;
 
   function Image(imgObj) {
     this.image = imgObj.image;
     this.title = imgObj.title;
     this.description = imgObj.description;
+    this.counter = Number(imgObj.counter);
   }
 
   function getAllImages() {
@@ -218,6 +227,12 @@ var ImageService = function ImageService($http, PARSE) {
   function addImage(imgObj) {
     var img = new Image(imgObj);
     return $http.post(url, img, PARSE.CONFIG);
+  }
+
+  function addLike(imgObj) {
+    imgObj.counter = Number(imgObj.counter + 1);
+    console.log(imgObj.counter);
+    return $http.put(url + '/' + imgObj.objectId, imgObj, PARSE.CONFIG);
   }
 };
 

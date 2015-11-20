@@ -8411,5 +8411,10 @@ body {
   background: #e2ebf3; }
   body .fa.fa-heart {
     display: none; }
+  body .hidden {
+    position: absolute;
+    display: none; }
+  body .show {
+    color: red; }
 
 /*# sourceMappingURL=main.css.map */

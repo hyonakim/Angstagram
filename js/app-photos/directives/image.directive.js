@@ -1,4 +1,4 @@
-let hyonaImage = function() {
+let hyonaImage = function(ImageService, $timeout) {
   
   return {
     restrict: 'E',
@@ -7,19 +7,33 @@ let hyonaImage = function() {
       image: '='
     },
     template: `
-      <img src='{{image.image}}' ng-dblclick='count = count + 1' ng-init='count=0'>
-      count: {{ count }}
+      <section class='gallery'>
+        <img ng-src='{{image.image}}'>
+        <div class='hidden'><i class="fa fa-smile-o fa-5x"></i></div>
+        <small><i class="fa fa-thumbs-up fa-3x"></i>:{{image.counter}}</small>
+      </section>
     `,
     controller: 'HomeController as vm',
     link: function (scope, element, attrs) {
       element.on('dblclick', function () {
-        count = count + 1;
+        console.log('you liked it');
+        element.find('div').removeClass('hidden').addClass('show');
+        $timeout (function () {
+          element.find('div').removeClass('show').addClass('hidden');
+        }, 1000);
+        ImageService.addLike(scope.image).then ( (res) => {
+          console.log(res);
+        });
       });
     }
   };
-
 };
 
-hyonaImage.$inject = [];
+hyonaImage.$inject = ['ImageService', '$timeout'];
 
 export default hyonaImage;
+
+
+
+
+
